@@ -3,8 +3,10 @@ import { Row, Col } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
 
 type Product = {
+  id: number;
   name: string;
   price: number;
+  url: string;
 };
 
 export function Store() {
@@ -16,7 +18,7 @@ export function Store() {
         {products.map((product) => {
           return (
             <Col>
-              <StoreItem {...product} />
+              <StoreItem key={product.id} {...product} />
             </Col>
           );
         })}
