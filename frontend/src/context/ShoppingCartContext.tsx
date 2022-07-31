@@ -12,7 +12,7 @@ import { Product } from "../types/ProductType";
 type ShoppingCartContext = {
   getItemAdded: (id: number) => boolean;
   addToCart: (id: number) => void;
-  removeFromCart: (id: number) => void;
+  removeFromCart: (id: number, reason: string) => void;
   openCart: () => void;
   closeCart: () => void;
   cartItems: CartItem[];
@@ -59,11 +59,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     addProduct(productData.find((product) => product.id === id)!);
   }
 
-  function removeFromCart(id: number) {
+  function removeFromCart(id: number, reason: string) {
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id != id);
     });
-    removeProduct(productData.find((product) => product.id === id)!);
+    removeProduct(productData.find((product) => product.id === id)!, reason);
   }
 
   function getItemAdded(id: number) {

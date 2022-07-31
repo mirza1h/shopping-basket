@@ -27,6 +27,12 @@ const ProductSchema = new mongoose.Schema({
   timeRemovedFromCart: {
     type: Date,
   },
+  reason: {
+    type: String,
+    default: "N/A",
+    min: 3,
+    max: 255,
+  },
 });
 
 export default mongoose.model("Product", ProductSchema);

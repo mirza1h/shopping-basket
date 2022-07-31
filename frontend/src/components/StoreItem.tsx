@@ -26,20 +26,13 @@ export function StoreItem({ id, name, price, url }: StoreItemProps) {
           <span className="ms-2 text-muted">{formatCurrency(price)}</span>
         </Card.Title>
         <div className="mt-auto">
-          {isAdded === false ? (
-            <Button className="w-100" onClick={() => addToCart(id)}>
-              + Add To Cart
-            </Button>
-          ) : (
-            <Button
-              className="w-100"
-              onClick={() => removeFromCart(id)}
-              variant="danger"
-              size="sm"
-            >
-              - Remove From Cart
-            </Button>
-          )}
+          <Button
+            className="w-100"
+            onClick={() => addToCart(id)}
+            disabled={isAdded}
+          >
+            + Add To Cart
+          </Button>
         </div>
       </Card.Body>
     </Card>

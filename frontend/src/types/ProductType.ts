@@ -7,4 +7,5 @@ export type Product = {
   removed: boolean;
   timeAddedToCart: Date;
   timeRemovedFromCart: Date;
+  reason: string;
 };

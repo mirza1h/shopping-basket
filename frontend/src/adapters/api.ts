@@ -22,11 +22,12 @@ export const addProduct = async (product: Product) => {
   });
 };
 
-export const removeProduct = async (product: Product) => {
+export const removeProduct = async (product: Product, reason: string) => {
   updateProduct({
     ...product,
     removed: true,
     added: false,
+    reason: reason,
     timeRemovedFromCart: Date.now(),
   });
 };

@@ -1,8 +1,30 @@
+import { useEffect, useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import { getRemovedProducts } from "../adapters/api";
+import { RemovedProduct } from "../components/RemovedProduct";
+import { Product } from "../types/ProductType";
 
 export function Dashboard() {
-  getRemovedProducts().then((data) => {
-    console.log(data);
-  });
-  return <h1>Dashboard</h1>;
+  const [removedProducts, setRemovedProducts] = useState<Product[]>([]);
+  useEffect(() => {
+    getRemovedProducts().then((data) => {
+      setRemovedProducts(data);
+    });
+  }, []);
+
+  return (
+    <>
+      <h1>Dashboard</h1>
+      <h4>Items removed from shopping basket:</h4>
+      <Row md={2} xs={1} lg={3}>
+        {removedProducts.map((product: Product) => {
+          return (
+            <Col key={product.id} className="mt-1">
+              <RemovedProduct {...product} />
+            </Col>
+          );
+        })}
+      </Row>
+    </>
+  );
 }
