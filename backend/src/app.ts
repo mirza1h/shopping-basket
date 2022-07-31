@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-const connectDB = require('./config/db.ts');
+import connectDB from "./config/db";
 import productsRoutes from "./routes/productsRoute";
 
 const app: Express = express();

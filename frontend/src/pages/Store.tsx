@@ -1,13 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  url: string;
-};
+import { Product } from "../types/ProductType";
 
 export function Store() {
   const { productData } = useShoppingCart();
