@@ -1,10 +1,10 @@
-import Axios, { AxiosResponse } from "axios";
+import Axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { Product } from "../types/ProductType";
 
 export const PROXY_API: string = `http://localhost:3001`;
 
-export const getProducts = async () => {
-  return await Axios.get(`${PROXY_API}/products`)
+export const getProducts = async (requestParams?: AxiosRequestConfig) => {
+  return await Axios.get(`${PROXY_API}/products`, requestParams)
     .then((res: AxiosResponse) => {
       return res.data;
     })
@@ -37,4 +37,8 @@ const updateProduct = async (product: any) => {
       throw new Error(error);
     }
   );
+};
+
+export const getRemovedProducts = async () => {
+  return await getProducts({ params: { removed: true } });
 };

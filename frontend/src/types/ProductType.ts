@@ -4,4 +4,7 @@ export type Product = {
   price: number;
   url: string;
   added: boolean;
+  removed: boolean;
+  timeAddedToCart: Date;
+  timeRemovedFromCart: Date;
 };

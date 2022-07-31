@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Product from "../models/Product";
 
 async function getProducts(req: Request, res: Response) {
-  const products = await Product.find();
+  const products = await Product.find(req.query);
   products.length
     ? res.send(products)
     : res.status(500).send("Failed to fetch products!");
