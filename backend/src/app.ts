@@ -1,13 +1,27 @@
-import express, { Application, Request, Response } from "express";
+import express, { Express } from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+const connectDB = require('./config/db.ts');
+import productsRoutes from "./routes/productsRoute";
 
-const app: Application = express();
+const app: Express = express();
 
-const port: number = 3001;
+dotenv.config();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello");
-});
+const options: cors.CorsOptions = {
+  credentials: true,
+  origin: [
+    "http://127.0.0.1:5173",
+  ],
+};
 
-app.listen(port, function () {
-  console.log(`App is listening on port ${port} !`);
-});
+app.use(cors(options));
+app.use(express.json());
+
+connectDB();
+
+productsRoutes(app);
+
+app.listen(process.env.PORT, () => {
+  console.log("Server started on port: " + process.env.PORT);
+})

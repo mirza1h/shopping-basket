@@ -1,6 +1,6 @@
-import productData from "../data/products.json";
 import { Row, Col } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 type Product = {
   id: number;
@@ -10,12 +10,12 @@ type Product = {
 };
 
 export function Store() {
-  const products: Product[] = productData;
+  const { productData } = useShoppingCart();
   return (
     <>
       <h1>Store</h1>
       <Row md={2} xs={1} lg={3}>
-        {products.map((product) => {
+        {productData.map((product: Product) => {
           return (
             <Col>
               <StoreItem key={product.id} {...product} />
