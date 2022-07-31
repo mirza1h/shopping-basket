@@ -17,6 +17,10 @@ const ProductSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  added: {
+    type: Boolean,
+    default: false,
+  },
   timeAddedToCart: {
     type: Date,
   },
@@ -25,4 +29,4 @@ const ProductSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Product", ProductSchema);
+export default mongoose.model("Product", ProductSchema);

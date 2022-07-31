@@ -1,14 +1,16 @@
 import { Request, Response } from "express";
-const Product = require("../models/Product");
+import Product from "../models/Product";
 
 async function getProducts(req: Request, res: Response) {
   const products = await Product.find();
-  res.send(products);
+  products.length
+    ? res.send(products)
+    : res.status(500).send("Failed to fetch products!");
 }
 
 async function updateProduct(req: Request, res: Response) {
   await Product.findOneAndUpdate({ id: req.params.id }, req.body);
-  res.sendStatus(200);
+  res.status(200);
 }
 
 export default {

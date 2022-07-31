@@ -13,12 +13,28 @@ export const getProducts = async () => {
     });
 };
 
-export const updateProduct = async (product: Product) => {
-  return await Axios.put(`${PROXY_API}/products/${product.id}`, {
+export const addProduct = async (product: Product) => {
+  updateProduct({
+    ...product,
+    added: true,
+    removed: false,
+    timeAddedToCart: Date.now(),
+  });
+};
+
+export const removeProduct = async (product: Product) => {
+  updateProduct({
     ...product,
     removed: true,
+    added: false,
     timeRemovedFromCart: Date.now(),
-  }).catch((error: string) => {
-    throw new Error(error);
   });
+};
+
+const updateProduct = async (product: any) => {
+  return await Axios.put(`${PROXY_API}/products/${product.id}`, product).catch(
+    (error: string) => {
+      throw new Error(error);
+    }
+  );
 };

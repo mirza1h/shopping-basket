@@ -11,8 +11,8 @@ export function Store() {
       <Row md={2} xs={1} lg={3}>
         {productData.map((product: Product) => {
           return (
-            <Col>
-              <StoreItem key={product.id} {...product} />
+            <Col key={product.id}>
+              <StoreItem {...product} />
             </Col>
           );
         })}

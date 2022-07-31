@@ -6,7 +6,7 @@ import {
   useState,
 } from "react";
 import { ShoppingCart } from "../components/ShoppingCart";
-import { getProducts, updateProduct } from "../adapters/api";
+import { getProducts, addProduct, removeProduct } from "../adapters/api";
 import { Product } from "../types/ProductType";
 
 type ShoppingCartContext = {
@@ -42,6 +42,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
   useEffect(() => {
     getProducts().then((data) => {
       setProductData(data);
+      const existingCart = data.filter((product: Product) => {
+        if (product.added) return true;
+      });
+      setCartItems(existingCart);
     });
   }, []);
 
@@ -52,13 +56,14 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     setCartItems((currItems) => {
       return [...currItems, { id }];
     });
+    addProduct(productData.find((product) => product.id === id)!);
   }
 
   function removeFromCart(id: number) {
-    updateProduct(productData.find((product) => product.id === id)!);
     setCartItems((currItems) => {
       return currItems.filter((item) => item.id != id);
     });
+    removeProduct(productData.find((product) => product.id === id)!);
   }
 
   function getItemAdded(id: number) {
