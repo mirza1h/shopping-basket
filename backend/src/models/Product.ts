@@ -30,6 +30,7 @@ const ProductSchema = new mongoose.Schema({
   reason: {
     type: String,
     default: "N/A",
+    optional: true,
     min: 3,
     max: 255,
   },

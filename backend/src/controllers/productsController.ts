@@ -9,9 +9,8 @@ async function getProducts(req: Request, res: Response) {
 }
 
 async function updateProduct(req: Request, res: Response) {
-  await Product.findOneAndUpdate({ id: req.params.id }, req.body, {}, (err) => {
-    err ? res.status(200) : res.status(500).send("Failed to update!");
-  });
+  await Product.findOneAndUpdate({ id: req.params.id }, req.body);
+  res.status(200);
 }
 
 export default {
