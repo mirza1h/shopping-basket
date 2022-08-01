@@ -47,7 +47,7 @@ export const getRemovedProducts = async () => {
 export const authenticateUser = async (userData: any) => {
   return await Axios.post(`${PROXY_API}/auth`, userData)
     .then((response: AxiosResponse) => {
-      localStorage.setItem("token", JSON.stringify(response.data));
+      localStorage.setItem("userData", JSON.stringify(response.data));
     })
     .catch((error: AxiosResponse) => {
       throw error;

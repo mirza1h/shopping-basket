@@ -11,7 +11,7 @@ async function userLogin(req: Request, res: Response) {
       return res.status(401).send({ message: "Invalid Email or Password" });
 
     const token = user.generateAuthToken();
-    res.status(200).send({ data: token, message: "Logged in successfully" });
+    res.status(200).send({ email: user.email, role: user.role, token });
   } catch (error) {
     res
       .status(500)

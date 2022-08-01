@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { authenticateUser } from "../adapters/api";
-import { useNavigate } from "react-router-dom";
+import { UserData } from "../types/UserDataType";
 
-export function Login() {
+type LoginProps = {
+  user: UserData;
+};
+
+export function Login({ user }: LoginProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      window.location.href = "/";
+    }
+  }, []);
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -20,7 +29,7 @@ export function Login() {
     event.preventDefault();
     try {
       await authenticateUser({ email, password });
-      navigate("/");
+      window.location.href = "/";
     } catch (error: any) {
       setError(error.response.data.message);
     }
