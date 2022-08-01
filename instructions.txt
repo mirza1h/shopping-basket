@@ -1,0 +1,6 @@
+1. cd into /backend run 'npm install' and then 'npm run dev'
+2. cd into /frontend run 'npm install' and then 'npm run dev' and navigate to provided address
+
+Credentials:
+    User: test@test.com : test
+    Admin: admin@admin.com : admin
