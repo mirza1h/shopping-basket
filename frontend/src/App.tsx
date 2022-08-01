@@ -4,6 +4,7 @@ import { Dashboard } from "./pages/Dashboard";
 import { Store } from "./pages/Store";
 import { Navbar } from "./components/Navbar";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { Login } from "./pages/Login";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/" element={<Store />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Container>
     </ShoppingCartProvider>

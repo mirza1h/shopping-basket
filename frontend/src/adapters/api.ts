@@ -18,7 +18,7 @@ export const addProduct = async (product: Product) => {
     ...product,
     added: true,
     removed: false,
-    timeAddedToCart: Date.now(),
+    timeAddedToCart: new Date(),
   });
 };
 
@@ -28,11 +28,11 @@ export const removeProduct = async (product: Product, reason: string) => {
     removed: true,
     added: false,
     reason: reason,
-    timeRemovedFromCart: Date.now(),
+    timeRemovedFromCart: new Date(),
   });
 };
 
-const updateProduct = async (product: any) => {
+const updateProduct = async (product: Product) => {
   return await Axios.put(`${PROXY_API}/products/${product.id}`, product).catch(
     (error: string) => {
       throw new Error(error);
@@ -42,4 +42,14 @@ const updateProduct = async (product: any) => {
 
 export const getRemovedProducts = async () => {
   return await getProducts({ params: { removed: true } });
+};
+
+export const authenticateUser = async (userData: any) => {
+  return await Axios.post(`${PROXY_API}/auth`, userData)
+    .then((response: AxiosResponse) => {
+      localStorage.setItem("token", JSON.stringify(response.data));
+    })
+    .catch((error: AxiosResponse) => {
+      throw error;
+    });
 };
