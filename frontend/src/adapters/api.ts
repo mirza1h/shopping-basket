@@ -44,8 +44,8 @@ export const getRemovedProducts = async () => {
   return await getProducts({ params: { removed: true } });
 };
 
-export const authenticateUser = async (userData: any) => {
-  return await Axios.post(`${PROXY_API}/auth`, userData)
+export const authenticateUser = async (email: string, password: string) => {
+  return await Axios.post(`${PROXY_API}/auth`, { email, password })
     .then((response: AxiosResponse) => {
       localStorage.setItem("userData", JSON.stringify(response.data));
     })

@@ -10,7 +10,7 @@ type StoreItemProps = {
 };
 
 export function StoreItem({ id, name, price, url }: StoreItemProps) {
-  const { addToCart, removeFromCart, getItemAdded } = useShoppingCart();
+  const { addToCart, getItemAdded } = useShoppingCart();
   const isAdded = getItemAdded(id);
   return (
     <Card className="h-100">

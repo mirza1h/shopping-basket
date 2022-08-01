@@ -28,7 +28,7 @@ export function Login({ user }: LoginProps) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      await authenticateUser({ email, password });
+      await authenticateUser(email, password);
       window.location.href = "/";
     } catch (error: any) {
       setError(error.response.data.message);

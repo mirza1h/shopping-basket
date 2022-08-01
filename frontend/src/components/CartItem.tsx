@@ -15,9 +15,11 @@ export function CartItem({ id }: CartItemProps) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const handleConfirm = () => {
     removeFromCart(id, reason + otherReason);
   };
+
   const onSelectReason = (event: React.ChangeEvent<HTMLInputElement>) => {
     setReason(event.target.value);
   };
